@@ -21,7 +21,16 @@ body {
     height: 100vh;
     padding: 0;
 }
-
+.welcome-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    width: 300px;
+}
 /* 🔹 Contenedor del chat */
 .chat-container {
     width: 90%;
@@ -38,7 +47,7 @@ body {
 
 /* 🔹 Header con Logo y Título */
 .chat-header {
-    background: linear-gradient(to right, #5f78db, #8166c427);
+    background: linear-gradient(to right, #5f78db3d, #8166c427);
     padding: 15px;
     text-align: center;
     display: flex;
@@ -48,15 +57,11 @@ body {
 }
 
 .chat-header img {
-    width: 120px;
+    width: 200px;
     margin-bottom: 5px;
 }
 
-.chat-header h2 {
-    font-size: 20px;
-    font-weight: bold;
-    color: rgba(230, 233, 255, 0.932);
-}
+
 
 /* 🔹 Mensajes del chat */
 .chat-messages {
@@ -79,7 +84,7 @@ body {
 
 /* 🔹 Degradado en el mensaje del usuario */
 .message.user {
-    background: linear-gradient(to right, #7661ec, #6441a5);
+    background: linear-gradient(to right, #6176ec, #6371f5);
     color: white;
     align-self: flex-end;
     border-radius: 10px 10px 0px 10px;
@@ -92,7 +97,6 @@ body {
     align-self: flex-start;
     border-radius: 10px 10px 10px 0px;
     padding: 15px;
-    font-weight: bold;
 }
 
 /* 🔹 Input dinámico del usuario */
@@ -121,9 +125,9 @@ body {
 
 /* 🔹 Botón con Efecto Degradado */
 .send-button {
-    background: linear-gradient(to right, #5f77db, #8066c4);
-    color: white;
-    border: none;
+    background: linear-gradient(to right, #ffffff, #ffffff);
+    color: rgb(0, 0, 0);
+    border: 1px solid black;
     font-size: 24px;
     padding: 12px 16px;
     border-radius: 50%;
@@ -139,13 +143,17 @@ body {
     background: linear-gradient(to right, #8066c4, #5f77db);
     transform: scale(1.1);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: rgb(255, 255, 255);
+    border: none;
+
+
 }
 
 /* 🔹 Título con Degradado */
 .titulo {
-    font-size: 24px;
+    font-size:200%;
     font-weight: bold;
-    background: linear-gradient(to right, #7661ec, #6441a5);
+    background: linear-gradient(to right, #000000, #150c27);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -188,6 +196,55 @@ body {
         padding: 10px;
     }
 }
+/* 🔹 Pantalla de Bienvenida */
+
+
+.welcome-screen h1 {
+    font-size: 28px;
+    font-weight: bold;
+    background: linear-gradient(to right, #5f77db, #8066c4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 10px;
+}
+
+.welcome-screen p {
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+/* 🔹 Botones de Preguntas Frecuentes */
+.faq-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.faq-button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(to right, #6b9bff, #8e72d3);
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    transition: all 0.2s ease;
+    max-width: 280px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.faq-button:hover {
+    background: linear-gradient(to right, #5a87f5, #7a5fc4);
+    transform: scale(1.05);
+}
+
+/* 🔹 Ocultar bienvenida cuando inicie el chat */
+.hidden {
+    display: none;
+}
 
 
     </style>
@@ -197,14 +254,29 @@ body {
     <div class="chat-container">
         <div class="chat-header">
             <img src="/asset/logo.png" alt="Logo DECSA">
-            <h2 class="titulo">Asistente Virtual</h2>
         </div>
+    
+        <!-- Mensaje de bienvenida y preguntas frecuentes -->
+        <div class="welcome-screen" id="welcome-screen">
+            <h1>¡Hola!  </h1>
+            <p>Estoy aquí para ayudarte con cualquier duda que tengas. <br>¿En qué puedo asistirte?</p>
+            <div class="faq-buttons">
+                <button class="faq-button" onclick="sendFAQ('¿Cómo cambiar el titular del servicio?')">¿Cómo cambiar el titular del servicio?</button>
+                <button class="faq-button" onclick="sendFAQ('¿Cuáles son los requisitos para nuevos clientes?')">¿Cuáles son los requisitos para nuevos clientes?</button>
+                <button class="faq-button" onclick="sendFAQ('¿Cómo reportar un problema con mi factura?')">¿Cómo reportar un problema con mi factura?</button>
+            </div>
+        </div>
+    
+        <!-- Mensajes del chat -->
         <div class="chat-messages" id="chat-messages"></div>
+    
+        <!-- Input del usuario -->
         <div class="chat-input-container">
-            <textarea id="user-input" class="chat-input" placeholder="Escribí tu mensaje..." onkeypress="handleKeyPress(event)"></textarea>
+            <textarea id="user-input" class="chat-input" placeholder="Pregunta lo que quieras..." onkeypress="handleKeyPress(event)"></textarea>
             <button class="send-button" onclick="sendMessage()">➤</button>
         </div>
     </div>
+    
 
     <script>
         // 🔹 Generar un session_id ÚNICO y almacenarlo en sessionStorage
@@ -270,6 +342,60 @@ body {
                 appendMessage("bot", "Hubo un error al conectar con el chatbot.");
             }
         }
+        // 🔹 Función para enviar mensaje desde Preguntas Frecuentes
+function sendFAQ(question) {
+    document.getElementById("user-input").value = question;
+    sendMessage();
+}
+
+// 🔹 Ocultar la bienvenida cuando el usuario escriba o haga clic en una FAQ
+function hideWelcomeScreen() {
+    const welcomeScreen = document.getElementById("welcome-screen");
+    if (welcomeScreen) {
+        welcomeScreen.classList.add("hidden");
+    }
+}
+
+// 🔹 Modificar la función sendMessage para ocultar la bienvenida al enviar el primer mensaje
+async function sendMessage() {
+    const userInput = document.getElementById("user-input");
+    const messageText = userInput.value.trim();
+
+    if (!messageText) return;
+
+    // Ocultar pantalla de bienvenida si es la primera interacción
+    hideWelcomeScreen();
+
+    appendMessage("user", messageText);
+    userInput.value = ""; 
+
+    try {
+        const response = await fetch("https://cool-hawk-comic.ngrok-free.app/webhook/4c91bdc7-76bf-4b32-8b00-f26e001687fa", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                session_id: sessionStorage.getItem("session_id"),
+                message: messageText
+            })
+        });
+
+        if (!response.ok) throw new Error(`Error: ${response.status}`);
+
+        const data = await response.json();
+        if (data.message) {
+            appendMessage("bot", data.message);
+        } else {
+            appendMessage("bot", "No entendí tu pregunta.");
+        }
+    } catch (error) {
+        console.error("Error en la solicitud:", error);
+        appendMessage("bot", "Hubo un error al conectar con el chatbot.");
+    }
+}
+
     </script>
 
 </body>
