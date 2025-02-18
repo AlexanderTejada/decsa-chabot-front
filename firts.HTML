@@ -23,6 +23,7 @@
             padding: 40px;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: 800px;
         }
         .header {
             display: flex;
@@ -39,6 +40,7 @@
         }
         p {
             color: rgba(32, 9, 83, 0.623);
+            margin-top: 40px;
         }
         h2 {
             font-size: 20px;
@@ -50,7 +52,6 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 10px;
-            margin-top: 20px;
         }
         .prompt-buttons button {
             padding: 8px 12px;
@@ -58,7 +59,7 @@
             border-radius: 8px;
             background: #f1eefcd7;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 1px;
             transition: all 0.2s ease;
             max-width: 280px;
             text-align: center;
@@ -83,7 +84,7 @@
             justify-content: center;
             background: rgba(255, 255, 255, 0.712);
             padding: 10px;
-            border-radius: 0px;
+            border-radius: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             width: 100%;
         }
@@ -93,6 +94,7 @@
             flex: 1;
             padding: 10px;
             font-size: 14px;
+            background-color: #86cacf00;
         }
         .search-bar button {
             border: none;
@@ -103,19 +105,31 @@
         .subtitle {
             background-image: linear-gradient(to right, blue, rgb(255, 168, 168));
             -webkit-background-clip: text;
+            margin-top: 100px;
             background-clip: text;
             color: transparent;
+            font-size: 50px;
         }
+        
+        #n8n-chat {
+    max-height: 100%;
+    padding: 0px;
+    max-width: 100%;
+}
         @media (max-width: 600px) {
             .prompt-buttons {
                 flex-direction: column;
             }
             .prompt-buttons button {
                 width: 100%;
-                font-size: 10px;
+                font-size: 15px;
                 padding: 6px 10px;
             }
+
+
+
         }
+    
     </style>
 </head>
 <body>
@@ -125,7 +139,7 @@
                 <img src="asset/logo.png" alt="Logo DECSA">
             </div>
         </div>
-        <h1 class="subtitle">Hola soy DECSA AI</h1>
+        <h1 class="subtitle">DECSA</h1>
         <h2>¿En qué te gustaría que te ayude?</h2>
         <p>Preguntas frecuentes</p>
         <div class="prompt-buttons">
