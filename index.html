@@ -80,23 +80,38 @@ body {
     margin-bottom: 10px;
     word-wrap: break-word;
     animation: fadeIn 0.3s ease-in-out;
-}
+}/* 🔹 Estilos para listas en las respuestas del bot */
+/* 🔹 Estilos para listas en las respuestas del bot */
+
+
 
 /* 🔹 Degradado en el mensaje del usuario */
-.message.user {
-    background: linear-gradient(to right, #6176ec, #6371f5);
-    color: white;
-    align-self: flex-end;
-    border-radius: 10px 10px 0px 10px;
-}
-
-/* 🔹 Fondo con Degradado para el Bot */
+/* 🔹 Ajuste dinámico del mensaje del bot */
 .message.bot {
-    background: linear-gradient(to left, #dde3fa, #c8d3f0);
+    background: linear-gradient(to right, #dde3fa, #c8d3f0);
     color: black;
     align-self: flex-start;
     border-radius: 10px 10px 10px 0px;
-    padding: 15px;
+    padding: 25px;
+    max-width: 80%; /* Evita que el mensaje sea muy ancho */
+    width: fit-content; /* Ajusta el ancho al contenido */
+    min-width: 100px; /* Asegura que los mensajes cortos no sean demasiado pequeños */
+    word-wrap: break-word; /* Ajusta palabras largas */
+    white-space: pre-wrap; /* Respeta los saltos de línea */
+}
+
+/* 🔹 Para los mensajes de usuario (manteniendo coherencia) */
+.message.user {
+    background: linear-gradient(to right, #7a5ff5, #6441a5);
+    color: white;
+    align-self: flex-end;
+    border-radius: 10px 10px 0px 10px;
+    padding: 12px;
+    max-width: 80%;
+    width: fit-content;
+    min-width: 100px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 /* 🔹 Input dinámico del usuario */
@@ -288,13 +303,36 @@ body {
 
         // 🔹 Función para agregar mensajes al chat
         function appendMessage(sender, text) {
-            const chatMessages = document.getElementById('chat-messages');
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add('message', sender);
-            messageDiv.innerText = text;
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight; // Auto scroll al final
-        }
+    const chatMessages = document.getElementById('chat-messages');
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message', sender);
+
+    // Reemplazar **texto** con <strong>texto</strong> para negritas
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+    // Si el mensaje contiene listas con *, lo convertimos en HTML con <ul> y <li>
+    if (text.includes('* ')) {
+        text = text
+            .split('\n') // Dividimos por saltos de línea
+            .map(line => {
+                if (line.startsWith('* ')) {
+                    return `<li>${line.replace('* ', '')}</li>`; // Convertimos * en <li>
+                }
+                return `<p>${line}</p>`; // Convertimos líneas normales en <p>
+            })
+            .join(''); // Unimos todo en un solo string
+
+        messageDiv.innerHTML = `<ul>${text}</ul>`; // Lo envolvemos en una lista <ul>
+    } else {
+        // Si no es una lista, simplemente aplicamos la conversión de negritas y mostramos el mensaje
+        messageDiv.innerHTML = text.split('\n').map(line => `<p>${line}</p>`).join('');
+    }
+
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight; // Auto scroll al final
+}
+
+
 
         // 🔹 Manejar la tecla Enter para enviar mensajes
         function handleKeyPress(event) {
