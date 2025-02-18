@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DECSA AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+    <style>
+        #n8n-chat{
+            max-height: 90%;
+                padding: 50px;
+                max-width: 60%;
+
+        }
+       
+        html, body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #a69ab9, #86cacf);
+    margin: 0;
+    padding: 0;
+    
+}
+
+        :root {
+	--chat--color-primary: #3c4174;
+	--chat--color-primary-shade-50: #4a6adc;
+	--chat--color-primary-shade-100: #3c5aba;
+	--chat--color-secondary: #5e5094;
+	--chat--color-secondary-shade-50:rgba(43, 43, 43, 0.651);
+    ;
+	--chat--color-white: #ffffff;
+	--chat--color-light: #dddddd;
+	--chat--color-light-shade-50: #f0f0f0;
+	--chat--color-light-shade-100: #d9d9d9;
+	--chat--color-medium: #b3b3b3;
+	--chat--color-dark: #013441;
+	--chat--color-disabled: #808080;
+	--chat--color-typing: #606060;
+
+	--chat--spacing: 1rem;
+	--chat--border-radius: 0.5rem;
+	--chat--transition-duration: 0.2s;
+
+	--chat--window--width: 400px;
+	--chat--window--height: 600px;
+
+	--chat--header-height: auto;
+	--chat--header--padding: var(--chat--spacing);
+	--chat--header--background: var(--chat--color-dark);
+	--chat--header--color: var(--chat--color-light);
+	--chat--heading--font-size: 2em;
+	--chat--subtitle--font-size: inherit;
+	--chat--subtitle--line-height: 1.1;
+
+	--chat--textarea--height: 50px;
+
+	--chat--message--font-size: 1rem;
+	--chat--message--padding: var(--chat--spacing);
+	--chat--message--border-radius: var(--chat--border-radius);
+	--chat--message-line-height: 1.8;
+	--chat--message--bot--background: var(--chat--color-white);
+	--chat--message--bot--color: var(--chat--color-dark);
+	--chat--message--bot--border: none;
+	--chat--message--user--background: var(--chat--color-primary);
+	--chat--message--user--color: var(--chat--color-white);
+	--chat--message--user--border: none;
+	--chat--message--pre--background: rgba(0, 0, 0, 0.05);
+
+	--chat--toggle--background: var(--chat--color-primary);
+	--chat--toggle--hover--background: var(--chat--color-primary-shade-50);
+	--chat--toggle--active--background: var(--chat--color-primary-shade-100);
+	--chat--toggle--color: var(--chat--color-white);
+	--chat--toggle--size: 64px;
+}
+        html, body, #n8n-chat {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+.chat-layout .chat-header {
+    border-radius: 20px 20px 0px 0px;
+    max-height:     40px;
+    background-color: #508c9434;
+
+}
+.chat-layout .chat-body{
+    background-color: #dbdbdbec;
+    box-shadow: offset-x offset-y blur-radius spread-radius color;
+
+}
+
+.chat-footer{
+    color: #3c59ba00;
+}
+p{
+ color: rgba(2, 2, 2, 0.719)(2, 2, 2);
+}
+    </style>
+</head>
+<body>
+    
+    <script type="module">
+        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+        createChat({
+            webhookUrl: 'https://cool-hawk-comic.ngrok-free.app/webhook/d25408e4-3001-42d4-92c2-181cfe66c143/chat',  // Reemplaza con tu URL real de Webhook
+            mode: 'fullscreen',  // Modo de pantalla completa
+            showWelcomeScreen: true,
+            initialMessages: [
+            ],
+            i18n: {
+                en: {
+                    title: '',
+                    subtitle: '',
+                    getStarted: 'Nueva conversación',
+                    inputPlaceholder: 'Escribe tu pregunta...'
+                }
+            }
+        });
+    </script>
+</body>
+</html>

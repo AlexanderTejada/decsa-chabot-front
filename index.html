@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DECSA AI</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #a69ab9, #86cacf);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding-top: 20px;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.397);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo img {
+            width: 100px;
+            height: auto;
+        }
+        h1 {
+            font-size: 24px;
+            margin: 20px 0 10px;
+        }
+        p {
+            color: rgba(32, 9, 83, 0.623);
+        }
+        h2 {
+            font-size: 20px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.623);
+        }
+        .prompt-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .prompt-buttons button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            background: #f1eefcd7;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s ease;
+            max-width: 280px;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .prompt-buttons button:hover {
+            background: #5e7bfce3;
+            transform: scale(1.02);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            color: rgba(255, 255, 255, 0.651);
+        }
+        .prompt-buttons button:active {
+            transform: scale(0.98);
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .search-bar {
+            margin-top: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.712);
+            padding: 10px;
+            border-radius: 0px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        .search-bar input {
+            border: none;
+            outline: none;
+            flex: 1;
+            padding: 10px;
+            font-size: 14px;
+        }
+        .search-bar button {
+            border: none;
+            background: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .subtitle {
+            background-image: linear-gradient(to right, blue, rgb(255, 168, 168));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        @media (max-width: 600px) {
+            .prompt-buttons {
+                flex-direction: column;
+            }
+            .prompt-buttons button {
+                width: 100%;
+                font-size: 10px;
+                padding: 6px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="asset/logo.png" alt="Logo DECSA">
+            </div>
+        </div>
+        <h1 class="subtitle">Hola soy DECSA AI</h1>
+        <h2>¿En qué te gustaría que te ayude?</h2>
+        <p>Preguntas frecuentes</p>
+        <div class="prompt-buttons">
+            <button>Registro de titular de suministro</button>
+            <button>Titular precario, provisorio y transitorio</button>
+            <button>Documentación para cambio de titular</button>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Escribí lo que quieras">
+            <button>&rarr;</button>
+        </div>
+    </div>
+</body>
+</html>
